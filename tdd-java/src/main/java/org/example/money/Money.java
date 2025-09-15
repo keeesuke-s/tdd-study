@@ -1,6 +1,6 @@
 package org.example.money;
 
-class Money {
+class Money implements Expression {
     protected int amount;
     protected String currency;
 
@@ -29,5 +29,13 @@ class Money {
         Money money = (Money) object;
         return this.amount == money.amount
                 && this.currency.equals(money.currency);
+    }
+
+    Expression plus(Money addend) {
+        return new Sum(this , addend);
+    }
+
+    public Money reduce(String to) {
+        return this;
     }
 }
